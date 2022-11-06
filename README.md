@@ -5,6 +5,6 @@
 
 [Шахзода Айматова](https://github.com/bloblobloblob) — руководитель, разработчик      
 [Никита Шевченко](https://github.com/ICFA) — разработчик       
-[Ольга Вершинина](https://github.com/olyannaa) — разработчик       
-[Михаил Кочергин](https://github.com/finedandelion) — разработчик            
-[Арина Топор]() — автор текста            
+[Ольга Вершинина](https://github.com/olyannaa) — дизайнер       
+[Михаил Кочергин](https://github.com/finedandelion) — гейм-дизайнер            
+[Арина Топор]() — аналитик            
