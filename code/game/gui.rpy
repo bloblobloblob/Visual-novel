@@ -23,22 +23,22 @@ init python:
 ## Цвета текста в интерфейсе.
 
 ## Акцентный цвет используется в заголовках и подчёркнутых текстах.
-define gui.accent_color = '#cc6600'
+define gui.accent_color = '#d22d2d' #'#cc6600' 
 
 ## Цвет, используемый в текстовой кнопке, когда она не выбрана и не наведена.
-define gui.idle_color = '#888888'
+define gui.idle_color = '#d22d2d'
 
 ## Small_color используется в маленьком тексте, который должен быть ярче/темнее,
 ## для того, чтобы выделяться.
 define gui.idle_small_color = '#aaaaaa'
 
 ## Цвет, используемых в кнопках и панелях, когда они наведены.
-define gui.hover_color = '#e0a366'
+define gui.hover_color = '#000000'
 
 ## Цвет, используемый текстовой кнопкой, когда она выбрана, но не наведена.
 ## Кнопка может быть выбрана, если это текущий экран или текущее значение
 ## настройки.
-define gui.selected_color = '#ffffff'
+define gui.selected_color = '#000000'
 
 ## Цвет, используемый текстовой кнопкой, когда она не может быть выбрана.
 define gui.insensitive_color = '#8888887f'
@@ -49,20 +49,20 @@ define gui.muted_color = '#512800'
 define gui.hover_muted_color = '#7a3d00'
 
 ## Цвета, используемые в тексте диалогов и выборов.
-define gui.text_color = '#ffffff'
-define gui.interface_text_color = '#ffffff'
+define gui.text_color = '#000000'
+define gui.interface_text_color = '#000000'
 
 
 ## Шрифты и их размеры #########################################################
 
 ## Шрифт, используемый внутриигровым текстом.
-define gui.text_font = "DejaVuSans.ttf"
+define gui.text_font = "gui/m_font.ttf"
 
 ## Шрифт, используемый именами персонажей.
-define gui.name_text_font = "DejaVuSans.ttf"
+define gui.name_text_font = "gui/b_font.ttf"
 
 ## Шрифт, используемый текстом вне игры.
-define gui.interface_text_font = "DejaVuSans.ttf"
+define gui.interface_text_font = "gui/m_font.ttf"
 
 ## Размер нормального текста диалога.
 define gui.text_size = 33
@@ -86,7 +86,7 @@ define gui.title_text_size = 75
 ## Главное и игровое меню. #####################################################
 
 ## Изображения, используемые в главном и игровом меню.
-define gui.main_menu_background = "gui/main_menu.png"
+define gui.main_menu_background = "gui/main_more_dark.png"
 define gui.game_menu_background = "gui/game_menu.png"
 
 
@@ -95,7 +95,7 @@ define gui.game_menu_background = "gui/game_menu.png"
 ## Эти переменные контролируют, как диалог появляется на отдельной строчке.
 
 ## Высота текстового окна, содержащего диалог.
-define gui.textbox_height = 278
+define gui.textbox_height = 260
 
 ## Местоположение текстового окна по вертикали экрана. 0.0 — верх, 0.5 — центр и
 ## 1.0 — низ.
@@ -262,7 +262,7 @@ define gui.notify_ypos = 68
 define gui.choice_spacing = 33
 
 ## Кнопки в секции навигации главного и игрового меню.
-define gui.navigation_spacing = 6
+define gui.navigation_spacing = 30
 
 ## Контролирует интервал между настройками.
 define gui.pref_spacing = 15

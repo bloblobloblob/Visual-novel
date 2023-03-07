@@ -219,7 +219,7 @@ style choice_button_text is button_text
 
 style choice_vbox:
     xalign 0.5
-    ypos 405
+    ypos 740
     yanchor 0.5
 
     spacing gui.choice_spacing
@@ -247,7 +247,7 @@ screen quick_menu():
             style_prefix "quick"
 
             xalign 0.5
-            yalign 1.0
+            yalign 0.95
 
             textbutton _("Назад") action Rollback()
             textbutton _("История") action ShowMenu('history')
@@ -257,6 +257,7 @@ screen quick_menu():
             textbutton _("Б.Сохр") action QuickSave()
             textbutton _("Б.Загр") action QuickLoad()
             textbutton _("Опции") action ShowMenu('preferences')
+            textbutton _("Журнал") action ShowMenu('job')
 
 
 ## Данный код гарантирует, что экран быстрого меню будет показан в игре в любое
@@ -286,9 +287,9 @@ style quick_button_text:
 ## другим меню и к началу игры.
 
 screen navigation():
-
     vbox:
         style_prefix "navigation"
+
 
         xpos gui.navigation_xpos
         yalign 0.5
@@ -319,16 +320,97 @@ screen navigation():
 
         textbutton _("Об игре") action ShowMenu("about")
 
+        textbutton _("Журнал") action ShowMenu("job")
+
         if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
             ## Помощь не необходима и не относится к мобильным устройствам.
-            textbutton _("Помощь") action ShowMenu("help")
+            textbutton _("Управление") action ShowMenu("help")
 
         if renpy.variant("pc"):
 
             ## Кнопка выхода блокирована в iOS и не нужна на Android и в веб-
             ## версии.
             textbutton _("Выход") action Quit(confirm=not main_menu)
+
+screen main_navigation():
+
+    vbox:
+        xpos 1700
+        ypos 920
+        imagebutton idle "gui/logo.png" hover "gui/logo_pressed.png" action ShowMenu("about")
+
+    if renpy.variant("pc"):
+        vbox:
+            xpos 1755
+            ypos 20
+            imagebutton idle "gui/Выход_2.png" hover "gui/Выход_1.png" action Quit(confirm=not main_menu)
+    
+    vbox:
+        xpos 1340
+        ypos 800
+        imagebutton idle "gui/Настройки_1.png" hover "gui/Настройки_2.png" action ShowMenu("preferences")
+
+    if main_menu:
+        vbox:
+            xpos 705
+            ypos 505
+            imagebutton idle "gui/Комп_1.png" hover "gui/Комп_2.png" action Start()
+
+    vbox:
+        xpos 424
+        ypos 26
+        imagebutton idle "gui/Загрузить_1.png" hover "gui/Загрузить_2.png" action ShowMenu("load")
+
+    if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
+        vbox:
+            xpos 0
+            ypos 733
+            imagebutton idle "gui/Управление_1.png" hover "gui/Управление_2.png" action ShowMenu("help")
+
+    vbox:
+        xpos 310
+        ypos 580
+        imagebutton idle "gui/Журнал_1.png" hover "gui/Журнал_2.png" action ShowMenu("job")
+    
+    vbox:
+        xpos 875
+        ypos 920
+        text _("Начать игру")
+
+    vbox:
+        xpos 1300
+        ypos 920
+        text _("Настройки")
+
+    vbox:
+        xpos 475
+        ypos 920
+        text _("Управление")
+
+    vbox:
+        xpos 844
+        ypos 300
+        text ("Загрузить игру")
+
+    vbox:
+        xpos 175
+        ypos 650
+        text ("Журнал")
+
+    vbox:
+        xpos 860
+        yalign 0
+
+        spacing gui.navigation_spacing
+
+        if _in_replay:
+
+            textbutton _("Завершить повтор") action EndReplay(confirm=True)
+
+        elif not main_menu:
+
+            textbutton _("Главное меню") action MainMenu()
 
 
 style navigation_button is gui_button
@@ -362,7 +444,7 @@ screen main_menu():
 
     ## Оператор use включает отображение другого экрана в данном. Актуальное
     ## содержание главного меню находится на экране навигации.
-    use navigation
+    use main_navigation
 
     if gui.show_name:
 
@@ -386,7 +468,7 @@ style main_menu_frame:
     xsize 420
     yfill True
 
-    background "gui/overlay/main_menu.png"
+    background "gui/main_more_dark.png"
 
 style main_menu_vbox:
     xalign 1.0
@@ -700,6 +782,53 @@ style slot_button:
 style slot_button_text:
     properties gui.button_text_properties("slot_button")
 
+screen job():
+    
+    tag menu
+
+    use game_menu(_("Журнал"), scroll="viewport"):
+
+        style_prefix "about"
+
+        vbox:
+
+            text _('''
+ML разработчик - эксперт в области искусственного интеллекта (ИИ). Разрабатывает алгоритмы, по которым «думает» компьютер.
+
+Навыки ML инженера:
+    Требуемые:
+        Высокие математические навыки
+        Базис программирования
+        Моделирование данных
+    Желательные:
+        Знание SQL
+        Английский язык
+
+ИИ - это упрощенный процесс решения проблем для людей. Эта технология позволяет программному обеспечению выполнять задачи без явного участия специалиста. ИИ также включает нейронные сети и глубокое обучение.
+
+Примеры ИИ в обычной жизни:
+    Siri
+    Олег (Тинькофф)
+    Алиса (Яндекс)
+
+Машинное обучение – это приложение искусственного интеллекта (ИИ), которое дает возможность машинам получать доступ к данным и позволяет им учиться выполнять определенные задачи. ИИ использует алгоритмы и позволяет системам находить скрытые смыслы без постороннего вмешательства.
+
+Процесс подготовки машинного обучения:
+    сбор данных
+    подготовка данных и проектирование признаков
+    выбор алгоритма
+    обучение
+    тестирование
+
+Зарплата:
+    Junior ML-engineer - около 80 тысяч рублей.
+    Медиана проходит по точке в 165 000 рублей (специалист с 1–2-летним опытом в ML).
+    Опытный сеньор - 200 000 рублей. В крупных международных компаниях - 330 000 рублей и выше.
+
+Полезные материалы (если хотите узнать о профессии больше):
+{a=https://habr.com/ru/company/skillfactory/blog/546092/}Cтатья на хабре{/a}
+{a=https://docs.google.com/document/d/1j8ZjtDLnImzxbuyUQkcktNi9vjygSEEwUfYKbpqqXvM/edit?usp=sharing}Материал, подготовленный нашей командой{/a}''')
+
 
 ## Экран настроек ##############################################################
 ##
@@ -962,7 +1091,7 @@ screen help():
 
     default device = "keyboard"
 
-    use game_menu(_("Помощь"), scroll="viewport"):
+    use game_menu(_("Клавиши"), scroll="viewport"):
 
         style_prefix "help"
 
